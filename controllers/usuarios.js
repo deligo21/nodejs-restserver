@@ -2,8 +2,6 @@ import { response, request } from 'express';
 import Usuario from '../models/usuario.js'
 import bcryptjs from 'bcryptjs'
 
-
-
 const usuariosGet = async (req = request, res = response) => {
 
     //Argumentos opcionales
@@ -38,9 +36,9 @@ const usuariosPost = async (req, res) => {
     //Guardar en la bd
     await usuario.save();
 
-    res.status(201).json({
+    res.status(201).json(
         usuario
-    });
+    );
 }
 
 const usuariosPut = async(req, res) => {
@@ -48,7 +46,6 @@ const usuariosPut = async(req, res) => {
     const {id} = req.params;
     const {_id, password, google, correo,...resto} = req.body;
 
-    //TODO validar contra BD
     if (password){
         const salt = bcryptjs.genSaltSync();
         resto.password = bcryptjs.hashSync(password, salt);
@@ -56,7 +53,7 @@ const usuariosPut = async(req, res) => {
 
     const usuario = await Usuario.findByIdAndUpdate(id, resto, {new:true})
 
-    res.json({usuario});
+    res.json(usuario);
 }
 
 const usuariosPatch = (req, res) => {
