@@ -91,6 +91,18 @@ const productoYaExisteActualizar = async (nombre = "") => {
     }
 };
 
+//Validar colecciones permitidas
+
+const coleccionesPermitidas  = (coleccion = '', colecciones = []) =>{
+    
+    const incluida = colecciones.includes(coleccion);
+    if(!incluida){
+        throw new Error(`${coleccion} no esta permitida. Las colecciones permitidas son ${colecciones}`);        
+    }
+
+    return true;
+}
+
 export {
     esRolValido, 
     emailExiste,
@@ -102,4 +114,5 @@ export {
     existeProductoPorId,
     productoEstaActivo,
     productoYaExisteActualizar,
+    coleccionesPermitidas,
 }

@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { check, query, body, param } from 'express-validator';
+import { query, body, param } from 'express-validator';
 
 import {usuariosGet, usuariosPut, usuariosPost, usuariosPatch, usuariosDelete} from '../controllers/usuarios.js';
 
